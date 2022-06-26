@@ -1,10 +1,11 @@
 import React, {FC} from 'react';
 import styled from '@emotion/native';
+import {Header1} from '../../Theme/typography';
 
 const Button = styled.TouchableOpacity``;
 
-const Text = styled.Text`
-  color: ${props => props?.theme?.colors?.primary};
+const Text = styled(Header1)<{disable: boolean}>`
+  color: ${({disable}) => disable && 'gray'};
 `;
 
 interface Props {
@@ -16,7 +17,9 @@ interface Props {
 const InputButton: FC<Props> = ({onPress, placeholder, value}) => {
   return (
     <Button onPress={onPress}>
-      <Text>{value || placeholder}</Text>
+      <Text disable={!value} fontWeight="normal">
+        {value || placeholder}
+      </Text>
     </Button>
   );
 };

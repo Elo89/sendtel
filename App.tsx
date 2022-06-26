@@ -15,14 +15,22 @@ import ReusableProvider from './src/context/ReusableProvider';
 import useGitRepoCheck from './src/hooks/useGitRepoCheck';
 import {GitRepoCheckContext} from './src/context/contexts';
 
-export const ReusableContext = React.createContext<any | {}>({});
-
 const theme = {
-  colors: {
-    primary: 'black',
-    secondary: 'white',
-    error: 'red',
-    success: 'green',
+  light: {
+    colors: {
+      primary: 'black',
+      background: 'white',
+      error: 'red',
+      success: 'green',
+    },
+  },
+  dark: {
+    colors: {
+      primary: 'white',
+      background: 'black',
+      error: 'red',
+      success: 'green',
+    },
   },
 };
 
