@@ -1,33 +1,20 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {useCallback, useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {StatusBar} from 'react-native';
 import Button from '../../components/Button/Button';
 import Header from '../../components/Header/Header';
 import TextInput from '../../components/TextInput/TextInput';
 import {GitRepoCheckContext} from '../../context/contexts';
+import useAddField from '../../hooks/useAddField';
 
 import useDeviceTheme from '../../hooks/useDeviceTheme';
-import {ScreenRoute} from '../../Routing/Screens';
 import {CustomView, SafeAreaView} from '../../Theme/styled';
 
 const AddRepo = () => {
   const {barStyle} = useDeviceTheme();
-  const {setRepo, resetResponse} = useContext(GitRepoCheckContext);
-  const [inputValue, setInputValue] = useState('');
-  const navigate = useNavigation();
-
-  const handleChange = useCallback(
-    (value: string) => {
-      setInputValue(value);
-    },
-    [setInputValue],
-  );
-
-  const handleDone = useCallback(() => {
-    setRepo(inputValue);
-    navigate.navigate(ScreenRoute.HOME);
-    resetResponse();
-  }, [inputValue, navigate, setRepo, resetResponse]);
+  const {setRepo} = useContext(GitRepoCheckContext);
+  const {handleChange, handleDone, inputValue} = useAddField({
+    setField: setRepo,
+  });
 
   return (
     <SafeAreaView edges={['top', 'bottom']} flex={1}>
