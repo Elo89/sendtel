@@ -32,7 +32,7 @@ const FeedbackTelegram = () => {
   return (
     <SafeAreaView flex={1}>
       <StatusBar barStyle={barStyle} />
-      <CustomView px={3} pt={3} flex={1} justifyContent={'space-between'}>
+      <CustomView px={3} pt={5} flex={1} justifyContent={'space-between'}>
         <Header1 textAlign="center">All done! Repository sent.</Header1>
         <CustomView px={3} flexDirection="row" justifyContent={'flex-end'}>
           <Button onPress={handleCool}>Cool</Button>

@@ -89,7 +89,9 @@ const HomeScreen = () => {
               Send
             </Button>
           ) : (
-            <Button onPress={user && repo && handleCheck} isLoading={isLoading}>
+            <Button
+              onPress={user && repo ? handleCheck : () => null}
+              isLoading={isLoading}>
               Check
             </Button>
           )}
