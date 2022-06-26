@@ -11,6 +11,8 @@ import {
   FontWeightProps,
   space,
   SpaceProps,
+  textAlign,
+  TextAlignProps,
 } from 'styled-system';
 
 interface TypographyComponent
@@ -18,18 +20,20 @@ interface TypographyComponent
     FontFamilyProps,
     FontSizeProps,
     FontStyleProps,
-    FontWeightProps {
+    FontWeightProps,
+    TextAlignProps {
   children?: React.ReactNode;
 }
 
 export const CustomText: FC<TypographyComponent> = styled.Text`
-  color: ${({theme}) => theme.light.colors.primary};
-  font-family: OpenSans-Regular;
+  color: ${({theme}) => theme.colors.light.primary};
+  font-family: OpenSans;
   ${space}
   ${fontFamily}
   ${fontSize}
   ${fontStyle}
   ${fontWeight}
+  ${textAlign}
 `;
 
 export const TitlePage: FC<TypographyComponent> = styled(CustomText)`

@@ -12,12 +12,13 @@ interface Props {
   onPress: () => void;
   placeholder: string;
   value: string;
+  error: boolean;
 }
 
-const InputButton: FC<Props> = ({onPress, placeholder, value}) => {
+const InputButton: FC<Props> = ({onPress, placeholder, value, error}) => {
   return (
     <Button onPress={onPress}>
-      <Text disable={!value} fontWeight="normal">
+      <Text disable={!value || error} fontWeight="normal">
         {value || placeholder}
       </Text>
     </Button>

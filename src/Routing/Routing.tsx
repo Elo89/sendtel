@@ -5,6 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 import AddRepo from '../screens/AddRepo';
 import AddUser from '../screens/AddUser';
 import {ScreenRoute} from './Screens';
+import FeedbackTelegram from '../screens/FeedbackTelegram';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,10 @@ function Routing() {
         <Stack.Screen name={ScreenRoute.HOME} component={HomeScreen} />
         <Stack.Screen name={ScreenRoute.ADD_USER} component={AddUser} />
         <Stack.Screen name={ScreenRoute.ADD_REPO} component={AddRepo} />
+        <Stack.Screen
+          name={ScreenRoute.TELEGRAM_FEEDBACK}
+          component={FeedbackTelegram}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

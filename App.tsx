@@ -13,23 +13,27 @@ import Routing from './src/Routing/Routing';
 import {ThemeProvider} from '@emotion/react';
 import ReusableProvider from './src/context/ReusableProvider';
 import useGitRepoCheck from './src/hooks/useGitRepoCheck';
-import {GitRepoCheckContext} from './src/context/contexts';
+import {
+  GitRepoCheckContext,
+  TelegramSenderContext,
+} from './src/context/contexts';
+import useTelegramSender from './src/hooks/useTelegramSender';
 
 const theme = {
-  light: {
-    colors: {
-      primary: 'black',
-      background: 'white',
-      error: 'red',
-      success: 'green',
+  colors: {
+    light: {
+      primary: '#000',
+      background: '#fff',
+      error: '#F3AFAE',
+      success: '#D4FEDD',
+      disaled: '#989898',
     },
-  },
-  dark: {
-    colors: {
-      primary: 'white',
-      background: 'black',
-      error: 'red',
-      success: 'green',
+    dark: {
+      primary: '#fff',
+      background: '#000',
+      error: '#F3AFAE',
+      success: '#D4FEDD',
+      disaled: '#989898',
     },
   },
 };
@@ -38,7 +42,11 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <ReusableProvider hook={useGitRepoCheck} Context={GitRepoCheckContext}>
-        <Routing />
+        <ReusableProvider
+          hook={useTelegramSender}
+          Context={TelegramSenderContext}>
+          <Routing />
+        </ReusableProvider>
       </ReusableProvider>
     </ThemeProvider>
   );

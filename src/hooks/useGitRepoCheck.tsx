@@ -10,6 +10,7 @@ export interface GitRepoCheckType {
   user: string;
   setRepo: (repo: string) => void;
   setUser: (user: string) => void;
+  resetResponse: () => void;
 }
 
 const useGitRepoCheck = (): GitRepoCheckType => {
@@ -20,19 +21,16 @@ const useGitRepoCheck = (): GitRepoCheckType => {
 
   const getGitRepoCheck = useCallback(async () => {
     setIsLoading(true);
-    const response = fetch('https://github.com/Elo89/react-date-range').then(
-      res => {
-        return res.json();
-      },
-    );
-    try {
-      console.log(response);
-
-      setResponse(response);
-    } catch (error) {
-    } finally {
-      setIsLoading(false);
+    const data = await fetch(`https://github.com/${user}/${repo}`);
+    if (data.status === 200) {
+      setResponse('success');
+    } else {
+      setResponse('error');
     }
+    setIsLoading(false);
+  }, [repo, user]);
+  const resetResponse = useCallback(async () => {
+    setResponse(undefined);
   }, []);
 
   return {
@@ -43,6 +41,7 @@ const useGitRepoCheck = (): GitRepoCheckType => {
     user,
     setRepo,
     setUser,
+    resetResponse,
   };
 };
 

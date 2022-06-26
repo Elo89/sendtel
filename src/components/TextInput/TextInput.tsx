@@ -4,7 +4,7 @@ import {space, SpaceProps, FontSizeProps, fontSize} from 'styled-system';
 
 const Input = styled.TextInput<SpaceProps & FontSizeProps>`
   border-bottom-width: 2px;
-  border-bottom-color: ${({theme}) => theme.light.colors.primary};
+  border-bottom-color: ${({theme}) => theme.colors.light.primary};
   ${space}
   ${fontSize}
 `;
