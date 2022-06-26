@@ -13,6 +13,7 @@ import {
   FlexboxProps,
 } from 'styled-system';
 import {TitlePage} from '../../Theme/typography';
+import {CustomView} from '../../Theme/styled';
 
 interface WrapProps
   extends SpaceProps,
@@ -34,6 +35,7 @@ const BackButton = styled.TouchableOpacity``;
 const Image = styled.Image`
   height: 13px;
   width: 16px;
+  resize-mode: cover;
 `;
 
 interface Props {
@@ -48,12 +50,12 @@ const Header: FC<Props> = ({title}) => {
   };
 
   return (
-    <Wrap p={4} flexDirection="row" alignItems="center">
+    <CustomView px={3} pt={3} flexDirection="row" alignItems="center">
       <BackButton onPress={goBack}>
         <Image source={back} />
       </BackButton>
-      <TitlePage ml={4}>{title}</TitlePage>
-    </Wrap>
+      <TitlePage ml={3}>{title}</TitlePage>
+    </CustomView>
   );
 };
 
