@@ -1,18 +1,19 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, Text, View} from 'react-native';
-import useDeviceTheme from '../hooks/useDeviceTheme';
 
-const HomeScreen = () => {
+import useDeviceTheme from '../../hooks/useDeviceTheme';
+
+const AddUser = () => {
   const {barStyle} = useDeviceTheme();
 
   return (
     <SafeAreaView>
       <StatusBar barStyle={barStyle} />
       <View>
-        <Text>Home</Text>
+        <Text>Add User</Text>
       </View>
     </SafeAreaView>
   );
 };
 
-export default HomeScreen;
+export default AddUser;

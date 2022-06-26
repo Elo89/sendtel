@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, Text, View} from 'react-native';
 
-import useDeviceTheme from '../hooks/useDeviceTheme';
+import useDeviceTheme from '../../hooks/useDeviceTheme';
 
 const AddRepo = () => {
   const {barStyle} = useDeviceTheme();
