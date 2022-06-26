@@ -1,34 +1,19 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {SafeAreaView, StatusBar, Text, View} from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import useDeviceTheme from '../hooks/useDeviceTheme';
 
-const HomeScreen = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+const AddRepo = () => {
+  const {barStyle} = useDeviceTheme();
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View>
-          <Text>Add Repo</Text>
-        </View>
-      </ScrollView>
+    <SafeAreaView>
+      <StatusBar barStyle={barStyle} />
+      <View>
+        <Text>Add Repo</Text>
+      </View>
     </SafeAreaView>
   );
 };
 
-export default HomeScreen;
+export default AddRepo;

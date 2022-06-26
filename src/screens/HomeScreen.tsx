@@ -1,32 +1,16 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {SafeAreaView, StatusBar, Text, View} from 'react-native';
+import useDeviceTheme from '../hooks/useDeviceTheme';
 
 const HomeScreen = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  const {barStyle} = useDeviceTheme();
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View>
-          <Text>Home</Text>
-        </View>
-      </ScrollView>
+    <SafeAreaView>
+      <StatusBar barStyle={barStyle} />
+      <View>
+        <Text>Home</Text>
+      </View>
     </SafeAreaView>
   );
 };
