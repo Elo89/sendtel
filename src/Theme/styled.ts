@@ -19,12 +19,21 @@ import {
   FlexProps,
   flexShrink,
   FlexShrinkProps,
+  height,
+  HeightProps,
+  size,
+  SizeProps,
   space,
   SpaceProps,
+  width,
+  WidthProps,
 } from 'styled-system';
 
 interface TypographyComponent
   extends SpaceProps,
+    SizeProps,
+    WidthProps,
+    HeightProps,
     FlexProps,
     FlexDirectionProps,
     FlexBasisProps,
@@ -39,6 +48,25 @@ interface TypographyComponent
 
 export const CustomView: FC<TypographyComponent> = styled.View`
   ${space}
+  ${size}
+  ${width}
+  ${height}
+  ${flex}
+  ${flexBasis}
+  ${flexbox}
+  ${flexDirection}
+  ${flexGrow}
+  ${flexShrink}
+  ${color}
+  ${colorStyle}
+  ${backgroundColor}
+`;
+
+export const SafeAreaView: FC<TypographyComponent> = styled.SafeAreaView`
+  ${space}
+  ${size}
+  ${width}
+  ${height}
   ${flex}
   ${flexBasis}
   ${flexbox}

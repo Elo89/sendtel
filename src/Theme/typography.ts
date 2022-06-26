@@ -36,6 +36,7 @@ export const TitlePage: FC<TypographyComponent> = styled(CustomText)`
   font-size: 22px;
   line-height: 22px;
   font-family: OpenSans-bold;
+  margin-top: 8px;
 `;
 
 export const Header1: FC<TypographyComponent> = styled(CustomText)`
