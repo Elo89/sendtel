@@ -54,7 +54,7 @@ const HomeScreen = () => {
       }
       flex={1}>
       <StatusBar barStyle={barStyle} />
-      <CustomView p={3} flex={1} justifyContent="space-between">
+      <CustomView px={3} pt={3} flex={1} justifyContent="space-between">
         <CustomView>
           <Header2 mb={4}>Set the repository address</Header2>
           <Header1 fontWeight={'normal'}>github.com</Header1>

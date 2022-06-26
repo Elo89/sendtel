@@ -17,7 +17,7 @@ const AddRepo = () => {
   });
 
   return (
-    <SafeAreaView edges={['top', 'bottom']} flex={1}>
+    <SafeAreaView flex={1}>
       <StatusBar barStyle={barStyle} />
       <Header title="REPOSITORY" />
       <CustomView px={3} pt={3} flex={1} justifyContent={'space-between'}>

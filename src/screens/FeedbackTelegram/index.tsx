@@ -30,7 +30,7 @@ const FeedbackTelegram = () => {
   }, [resetResponse, resetTelegramSender, setRepo, setUser, navigate]);
 
   return (
-    <SafeAreaView edges={['top', 'bottom']} flex={1}>
+    <SafeAreaView flex={1}>
       <StatusBar barStyle={barStyle} />
       <CustomView px={3} pt={3} flex={1} justifyContent={'space-between'}>
         <Header1 textAlign="center">All done! Repository sent.</Header1>

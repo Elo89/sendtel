@@ -19,8 +19,7 @@ const useTelegramSender = (): TelegramSenderType => {
   const sendExercise = useCallback(async (repoUrl: string) => {
     setIsLoading(true);
     const data = await fetch(
-      // 'https://pushmore.io/webhook/d3Gm4aEPCuhAUjfbECLLdW41',
-      'https://pushmore.io/webhook/jsTQ2gMfgBwApzTkxQ24nAmL',
+      'https://pushmore.io/webhook/d3Gm4aEPCuhAUjfbECLLdW41',
       {
         method: 'POST',
         headers: {

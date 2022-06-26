@@ -17,7 +17,7 @@ const AddUser = () => {
   });
 
   return (
-    <SafeAreaView edges={['top', 'bottom']} flex={1}>
+    <SafeAreaView flex={1}>
       <StatusBar barStyle={barStyle} />
       <Header title="USER" />
       <CustomView px={3} pt={3} flex={1} justifyContent={'space-between'}>
