@@ -1,32 +1,35 @@
 import {useTheme} from '@emotion/react';
 import {useNavigation} from '@react-navigation/native';
-import React, {useCallback, useContext, useEffect, useMemo} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {StatusBar} from 'react-native';
 import Button from '../../components/Button/Button';
 import InputButton from '../../components/InputButton/InputButton';
-import {
-  GitRepoCheckContext,
-  TelegramSenderContext,
-} from '../../context/contexts';
+
 import useDeviceTheme from '../../hooks/useDeviceTheme';
 import {ScreenRoute} from '../../Routing/Screens';
 import {CustomView, SafeAreaView} from '../../Theme/styled';
 import {Header1, Header2} from '../../Theme/typography';
+import useHomeScreen from './useHomeScreen';
 
 const HomeScreen = () => {
+  const theme = useTheme();
   const {barStyle} = useDeviceTheme();
   const navigation = useNavigation();
   const {backgroundColor, deviceTheme} = useDeviceTheme();
-  const theme = useTheme();
-
-  const {user, repo, response, getGitRepoCheck, isLoading} =
-    useContext(GitRepoCheckContext);
-
   const {
-    sendExercise,
-    response: telegramResponse,
-    isLoading: telegramIsLoading,
-  } = useContext(TelegramSenderContext);
+    user,
+    repo,
+    response,
+    isLoading,
+    telegramResponse,
+    telegramIsLoading,
+    handleCheck,
+    handleSend,
+    userValue,
+    repoValue,
+    error,
+    success,
+  } = useHomeScreen();
 
   const pressUserButton = useCallback(() => {
     navigation.navigate(ScreenRoute.ADD_USER);
@@ -36,49 +39,11 @@ const HomeScreen = () => {
     navigation.navigate(ScreenRoute.ADD_REPO);
   }, [navigation]);
 
-  const handleCheck = useCallback(async () => {
-    await getGitRepoCheck();
-  }, [getGitRepoCheck]);
-
-  const handleSend = useCallback(async () => {
-    if (user && repo) {
-      sendExercise(`https://github.com/${user}/${repo}`);
-    }
-  }, [sendExercise, user, repo]);
-
   useEffect(() => {
     if (telegramResponse === 'success') {
       navigation.navigate(ScreenRoute.TELEGRAM_FEEDBACK);
     }
   }, [navigation, telegramResponse]);
-
-  const userValue = useMemo(() => {
-    if (response === 'error') {
-      return 'badUser';
-    }
-    return user;
-  }, [user, response]);
-
-  const repoValue = useMemo(() => {
-    if (response === 'error') {
-      return 'orBadRepo';
-    }
-    return repo;
-  }, [repo, response]);
-
-  const error = useMemo(() => {
-    if (response === 'error') {
-      return true;
-    }
-    return false;
-  }, [response]);
-
-  const success = useMemo(() => {
-    if (response === 'success') {
-      return true;
-    }
-    return false;
-  }, [response]);
 
   return (
     <SafeAreaView
