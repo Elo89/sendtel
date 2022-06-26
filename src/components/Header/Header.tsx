@@ -2,33 +2,8 @@ import React, {FC} from 'react';
 import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/native';
 import back from '../../../assets/images/back.png';
-import {
-  space,
-  SpaceProps,
-  LayoutProps,
-  layout,
-  PositionProps,
-  position,
-  flexbox,
-  FlexboxProps,
-} from 'styled-system';
 import {TitlePage} from '../../Theme/typography';
 import {CustomView} from '../../Theme/styled';
-
-interface WrapProps
-  extends SpaceProps,
-    LayoutProps,
-    PositionProps,
-    FlexboxProps {
-  children: React.ReactNode;
-}
-
-const Wrap = styled.View<WrapProps>`
-  ${space}
-  ${layout}
-  ${position}
-  ${flexbox}
-`;
 
 const BackButton = styled.TouchableOpacity``;
 

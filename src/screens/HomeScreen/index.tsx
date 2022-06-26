@@ -41,7 +41,9 @@ const HomeScreen = () => {
   }, [getGitRepoCheck]);
 
   const handleSend = useCallback(async () => {
-    sendExercise(`https://github.com/${user}/${repo}`);
+    if (user && repo) {
+      sendExercise(`https://github.com/${user}/${repo}`);
+    }
   }, [sendExercise, user, repo]);
 
   useEffect(() => {
@@ -78,14 +80,13 @@ const HomeScreen = () => {
     return false;
   }, [response]);
 
-  console.log('deviceTheme', deviceTheme);
-
   return (
     <SafeAreaView
       backgroundColor={
-        response ? theme.colors?.[deviceTheme]?.[response] : backgroundColor
+        response && deviceTheme
+          ? theme.colors?.[deviceTheme]?.[response]
+          : backgroundColor
       }
-      // deviceTheme={deviceTheme}
       flex={1}>
       <StatusBar barStyle={barStyle} />
       <CustomView p={3} flex={1} justifyContent="space-between">

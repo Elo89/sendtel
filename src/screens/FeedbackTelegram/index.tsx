@@ -24,8 +24,8 @@ const FeedbackTelegram = () => {
   const handleCool = useCallback(() => {
     resetResponse();
     resetTelegramSender();
-    setRepo(null);
-    setUser(null);
+    setRepo('');
+    setUser('');
     navigate.navigate(ScreenRoute.HOME);
   }, [resetResponse, resetTelegramSender, setRepo, setUser, navigate]);
 

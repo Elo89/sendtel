@@ -2,12 +2,16 @@ import React, {FC} from 'react';
 import styled from '@emotion/native';
 import {space, SpaceProps, FontSizeProps, fontSize} from 'styled-system';
 import useDeviceTheme from '../../hooks/useDeviceTheme';
+import {ColorSchemeName} from 'react-native';
 
-const Input = styled.TextInput<SpaceProps & FontSizeProps & {deviceTheme: any}>`
+const Input = styled.TextInput<
+  SpaceProps & FontSizeProps & {deviceTheme: ColorSchemeName}
+>`
   border-bottom-width: 2px;
   border-bottom-color: ${({theme, deviceTheme}) =>
-    theme.colors?.[deviceTheme]?.primary};
-  color: ${({theme, deviceTheme}) => theme.colors?.[deviceTheme]?.primary};
+    deviceTheme && theme.colors?.[deviceTheme]?.primary};
+  color: ${({theme, deviceTheme}) =>
+    deviceTheme && theme.colors?.[deviceTheme]?.primary};
   ${space}
   ${fontSize}
 `;

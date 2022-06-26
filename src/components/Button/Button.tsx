@@ -22,7 +22,9 @@ const Button: FC<Props> = ({onPress, isLoading, children}) => {
   return (
     <TouchableOpacity onPress={!isLoading ? onPress : () => null}>
       {isLoading ? (
-        <ActivityIndicator color={theme.colors?.[deviceTheme]?.primary} />
+        <ActivityIndicator
+          color={deviceTheme ? theme.colors?.[deviceTheme]?.primary : ''}
+        />
       ) : (
         <Header2 fontWeight="normal">{children}</Header2>
       )}

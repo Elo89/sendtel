@@ -20,25 +20,7 @@ import {
 import useTelegramSender from './src/hooks/useTelegramSender';
 import useDeviceTheme from './src/hooks/useDeviceTheme';
 import {CustomView} from './src/Theme/styled';
-
-const theme = {
-  colors: {
-    light: {
-      primary: '#000',
-      background: '#fff',
-      error: '#F3AFAE',
-      success: '#D4FEDD',
-      disaled: '#989898',
-    },
-    dark: {
-      primary: '#fff',
-      background: '#000',
-      error: '#A85661',
-      success: '#76A653',
-      disaled: '#989898',
-    },
-  },
-};
+import {theme} from './src/Theme/theme';
 
 function App() {
   const {backgroundColor} = useDeviceTheme();

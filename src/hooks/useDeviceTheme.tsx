@@ -10,7 +10,7 @@ interface DataReturned {
 }
 
 const useDeviceTheme = (): DataReturned => {
-  const deviceTheme = useColorScheme();
+  const deviceTheme = useColorScheme() || 'light';
   const isDarkMode = deviceTheme === 'dark';
   const theme = useTheme();
 

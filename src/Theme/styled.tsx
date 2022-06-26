@@ -1,5 +1,6 @@
 import styled from '@emotion/native';
 import React, {FC} from 'react';
+import {ColorSchemeName} from 'react-native';
 import {
   backgroundColor,
   BackgroundColorProps,
@@ -65,7 +66,7 @@ export const CustomView: FC<TypographyComponent> = styled.View`
 
 export const SafeAreaViewStyled: FC<
   TypographyComponent & {
-    deviceTheme: any;
+    deviceTheme: ColorSchemeName;
   }
 > = styled.SafeAreaView`
   background-color: ${({theme, deviceTheme}) =>
