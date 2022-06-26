@@ -18,6 +18,8 @@ import {
   TelegramSenderContext,
 } from './src/context/contexts';
 import useTelegramSender from './src/hooks/useTelegramSender';
+import useDeviceTheme from './src/hooks/useDeviceTheme';
+import {CustomView} from './src/Theme/styled';
 
 const theme = {
   colors: {
@@ -31,21 +33,24 @@ const theme = {
     dark: {
       primary: '#fff',
       background: '#000',
-      error: '#F3AFAE',
-      success: '#D4FEDD',
+      error: '#A85661',
+      success: '#76A653',
       disaled: '#989898',
     },
   },
 };
 
 function App() {
+  const {backgroundColor} = useDeviceTheme();
   return (
     <ThemeProvider theme={theme}>
       <ReusableProvider hook={useGitRepoCheck} Context={GitRepoCheckContext}>
         <ReusableProvider
           hook={useTelegramSender}
           Context={TelegramSenderContext}>
-          <Routing />
+          <CustomView flex={1} backgroundColor={backgroundColor}>
+            <Routing />
+          </CustomView>
         </ReusableProvider>
       </ReusableProvider>
     </ThemeProvider>

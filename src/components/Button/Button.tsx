@@ -3,6 +3,7 @@ import styled from '@emotion/native';
 import {Header2} from '../../Theme/typography';
 import {ActivityIndicator} from 'react-native';
 import {useTheme} from '@emotion/react';
+import useDeviceTheme from '../../hooks/useDeviceTheme';
 
 const TouchableOpacity = styled.TouchableOpacity`
   align-items: center;
@@ -17,10 +18,11 @@ interface Props {
 
 const Button: FC<Props> = ({onPress, isLoading, children}) => {
   const theme = useTheme();
+  const {deviceTheme} = useDeviceTheme();
   return (
     <TouchableOpacity onPress={!isLoading ? onPress : () => null}>
       {isLoading ? (
-        <ActivityIndicator color={theme.colors.light.primary} />
+        <ActivityIndicator color={theme.colors?.[deviceTheme]?.primary} />
       ) : (
         <Header2 fontWeight="normal">{children}</Header2>
       )}

@@ -1,5 +1,5 @@
 import styled from '@emotion/native';
-import {FC} from 'react';
+import React, {FC} from 'react';
 import {
   backgroundColor,
   BackgroundColorProps,
@@ -28,6 +28,7 @@ import {
   width,
   WidthProps,
 } from 'styled-system';
+import useDeviceTheme from '../hooks/useDeviceTheme';
 
 interface TypographyComponent
   extends SpaceProps,
@@ -62,7 +63,13 @@ export const CustomView: FC<TypographyComponent> = styled.View`
   ${backgroundColor}
 `;
 
-export const SafeAreaView: FC<TypographyComponent> = styled.SafeAreaView`
+export const SafeAreaViewStyled: FC<
+  TypographyComponent & {
+    deviceTheme: any;
+  }
+> = styled.SafeAreaView`
+  background-color: ${({theme, deviceTheme}) =>
+    theme.colors?.[deviceTheme]?.background};
   ${space}
   ${size}
   ${width}
@@ -77,3 +84,7 @@ export const SafeAreaView: FC<TypographyComponent> = styled.SafeAreaView`
   ${colorStyle}
   ${backgroundColor}
 `;
+export const SafeAreaView: FC<TypographyComponent> = ({...rest}) => {
+  const {deviceTheme} = useDeviceTheme();
+  return <SafeAreaViewStyled deviceTheme={deviceTheme} {...rest} />;
+};

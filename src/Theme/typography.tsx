@@ -1,5 +1,5 @@
 import styled from '@emotion/native';
-import {FC} from 'react';
+import React, {FC} from 'react';
 import {
   fontFamily,
   FontFamilyProps,
@@ -14,6 +14,7 @@ import {
   textAlign,
   TextAlignProps,
 } from 'styled-system';
+import useDeviceTheme from '../hooks/useDeviceTheme';
 
 interface TypographyComponent
   extends SpaceProps,
@@ -25,8 +26,8 @@ interface TypographyComponent
   children?: React.ReactNode;
 }
 
-export const CustomText: FC<TypographyComponent> = styled.Text`
-  color: ${({theme}) => theme.colors.light.primary};
+export const Text: FC<TypographyComponent> = styled.Text`
+  color: ${({theme, deviceTheme}) => theme.colors?.[deviceTheme]?.primary};
   font-family: OpenSans;
   ${space}
   ${fontFamily}
@@ -35,6 +36,15 @@ export const CustomText: FC<TypographyComponent> = styled.Text`
   ${fontWeight}
   ${textAlign}
 `;
+
+export const CustomText: FC<TypographyComponent> = ({children, ...rest}) => {
+  const {deviceTheme} = useDeviceTheme();
+  return (
+    <Text deviceTheme={deviceTheme} {...rest}>
+      {children}
+    </Text>
+  );
+};
 
 export const TitlePage: FC<TypographyComponent> = styled(CustomText)`
   font-size: 22px;

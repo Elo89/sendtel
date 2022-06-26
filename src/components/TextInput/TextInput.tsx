@@ -1,10 +1,13 @@
 import React, {FC} from 'react';
 import styled from '@emotion/native';
 import {space, SpaceProps, FontSizeProps, fontSize} from 'styled-system';
+import useDeviceTheme from '../../hooks/useDeviceTheme';
 
-const Input = styled.TextInput<SpaceProps & FontSizeProps>`
+const Input = styled.TextInput<SpaceProps & FontSizeProps & {deviceTheme: any}>`
   border-bottom-width: 2px;
-  border-bottom-color: ${({theme}) => theme.colors.light.primary};
+  border-bottom-color: ${({theme, deviceTheme}) =>
+    theme.colors?.[deviceTheme]?.primary};
+  color: ${({theme, deviceTheme}) => theme.colors?.[deviceTheme]?.primary};
   ${space}
   ${fontSize}
 `;
@@ -16,6 +19,7 @@ interface Props {
 }
 
 const TextInput: FC<Props> = ({onChange, placeholder, value}) => {
+  const {deviceTheme} = useDeviceTheme();
   return (
     <Input
       p={2}
@@ -23,6 +27,7 @@ const TextInput: FC<Props> = ({onChange, placeholder, value}) => {
       onChangeText={onChange}
       placeholder={placeholder}
       value={value}
+      deviceTheme={deviceTheme}
     />
   );
 };

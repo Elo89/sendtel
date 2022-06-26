@@ -1,27 +1,21 @@
-import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {useTheme} from '@emotion/react';
+import {ColorSchemeName, useColorScheme} from 'react-native';
 
 interface DataReturned {
   backgroundColor: string;
   contentColor: string;
+  deviceTheme: ColorSchemeName;
   isDarkMode: boolean;
   barStyle: 'light-content' | 'dark-content';
 }
 
 const useDeviceTheme = (): DataReturned => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const deviceTheme = useColorScheme();
+  const isDarkMode = deviceTheme === 'dark';
+  const theme = useTheme();
 
-  const backgroundColor = isDarkMode ? Colors.darker : Colors.lighter;
-  const contentColor = !isDarkMode ? Colors.darker : Colors.lighter;
+  const backgroundColor = theme.colors?.[deviceTheme || 'light']?.background;
+  const contentColor = theme.colors?.[deviceTheme || 'light']?.primary;
   const barStyle = isDarkMode ? 'light-content' : 'dark-content';
 
   return {
@@ -29,6 +23,7 @@ const useDeviceTheme = (): DataReturned => {
     contentColor,
     isDarkMode,
     barStyle,
+    deviceTheme,
   };
 };
 

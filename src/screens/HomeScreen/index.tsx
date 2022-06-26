@@ -16,6 +16,7 @@ import {Header1, Header2} from '../../Theme/typography';
 const HomeScreen = () => {
   const {barStyle} = useDeviceTheme();
   const navigation = useNavigation();
+  const {backgroundColor, deviceTheme} = useDeviceTheme();
   const theme = useTheme();
 
   const {user, repo, response, getGitRepoCheck, isLoading} =
@@ -77,8 +78,15 @@ const HomeScreen = () => {
     return false;
   }, [response]);
 
+  console.log('deviceTheme', deviceTheme);
+
   return (
-    <SafeAreaView backgroundColor={theme.colors.light[response]} flex={1}>
+    <SafeAreaView
+      backgroundColor={
+        response ? theme.colors?.[deviceTheme]?.[response] : backgroundColor
+      }
+      // deviceTheme={deviceTheme}
+      flex={1}>
       <StatusBar barStyle={barStyle} />
       <CustomView p={3} flex={1} justifyContent="space-between">
         <CustomView>
