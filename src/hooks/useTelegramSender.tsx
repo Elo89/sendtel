@@ -32,7 +32,7 @@ const useTelegramSender = (): TelegramSenderType => {
       },
     );
 
-    if (data?.status === 200) {
+    if (data?.status === 200 && data._bodyText === 'OK') {
       setResponse('success');
     } else {
       setResponse('error');
