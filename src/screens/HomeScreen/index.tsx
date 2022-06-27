@@ -1,7 +1,8 @@
 import {useTheme} from '@emotion/react';
 import {useNavigation} from '@react-navigation/native';
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import {StatusBar} from 'react-native';
+import {useNetInfo} from '@react-native-community/netinfo';
 import Button from '../../components/Button/Button';
 import InputButton from '../../components/InputButton/InputButton';
 
@@ -15,6 +16,7 @@ const HomeScreen = () => {
   const theme = useTheme();
   const {barStyle} = useDeviceTheme();
   const navigation = useNavigation();
+  const netInfo = useNetInfo();
   const {backgroundColor, deviceTheme} = useDeviceTheme();
   const {
     user,
@@ -45,14 +47,24 @@ const HomeScreen = () => {
     }
   }, [navigation, telegramResponse]);
 
+  const calculateBackgroundColor = useMemo(() => {
+    if (!netInfo.isConnected && deviceTheme) {
+      return theme.colors?.[deviceTheme]?.error;
+    }
+    if (response && deviceTheme) {
+      return theme.colors?.[deviceTheme]?.[response];
+    }
+    return backgroundColor;
+  }, [
+    backgroundColor,
+    deviceTheme,
+    netInfo.isConnected,
+    response,
+    theme.colors,
+  ]);
+
   return (
-    <SafeAreaView
-      backgroundColor={
-        response && deviceTheme
-          ? theme.colors?.[deviceTheme]?.[response]
-          : backgroundColor
-      }
-      flex={1}>
+    <SafeAreaView backgroundColor={calculateBackgroundColor} flex={1}>
       <StatusBar barStyle={barStyle} />
       <CustomView px={3} pt={3} flex={1} justifyContent="space-between">
         <CustomView>
@@ -80,6 +92,12 @@ const HomeScreen = () => {
             <Header2 fontWeight="normal" mt={3}>
               Check your <Header2 fontWeight="bold">username</Header2> or your
               repository <Header2 fontWeight="bold">name</Header2>
+            </Header2>
+          )}
+          {!netInfo.isConnected && (
+            <Header2 fontWeight="normal" mt={3}>
+              Check your{' '}
+              <Header2 fontWeight="bold">internet connection</Header2>
             </Header2>
           )}
         </CustomView>

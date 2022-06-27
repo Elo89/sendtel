@@ -69,3 +69,6 @@ const useHomeScreen = () => {
 };
 
 export default useHomeScreen;
+function useNetInfo() {
+  throw new Error('Function not implemented.');
+}
